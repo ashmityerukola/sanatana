@@ -1,4 +1,5 @@
 import { QuoteCard } from '../components/QuoteCard'
+import { MeditationTimer } from '../components/MeditationTimer'
 
 export function Meditation() {
   return (
@@ -7,7 +8,12 @@ export function Meditation() {
       <div className="mt-4">
         <QuoteCard theme="meditation" />
       </div>
-      <p className="mt-6 text-stone-500">Guided sessions and a plain timer — coming next.</p>
+      <div className="mt-6">
+        <MeditationTimer />
+      </div>
+      <p className="mt-6 text-stone-500">
+        Guided sessions are coming later, once there's real audio content to play.
+      </p>
     </div>
   )
 }
