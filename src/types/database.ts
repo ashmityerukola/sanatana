@@ -8,3 +8,26 @@ export interface Quote {
   translationNotes: string | null
   themes: ThemeSlug[]
 }
+
+export interface Pose {
+  id: string
+  nameSanskrit: string
+  nameEnglish: string
+  instructions: string
+  benefits: string | null
+  cautions: string | null
+  imageUrl: string | null
+}
+
+export interface SequenceStep {
+  position: number
+  holdSeconds: number
+  pose: Pose
+}
+
+export interface Sequence {
+  id: string
+  name: string
+  description: string | null
+  steps: SequenceStep[]
+}
