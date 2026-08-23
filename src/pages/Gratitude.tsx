@@ -1,4 +1,6 @@
 import { QuoteCard } from '../components/QuoteCard'
+import { RequireAuth } from '../components/RequireAuth'
+import { GratitudeLog } from '../components/GratitudeLog'
 
 export function Gratitude() {
   return (
@@ -7,7 +9,11 @@ export function Gratitude() {
       <div className="mt-4">
         <QuoteCard theme="gratitude" />
       </div>
-      <p className="mt-6 text-stone-500">Daily 1-3 item log — coming next.</p>
+      <div className="mt-6">
+        <RequireAuth>
+          <GratitudeLog />
+        </RequireAuth>
+      </div>
     </div>
   )
 }

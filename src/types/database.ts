@@ -31,3 +31,9 @@ export interface Sequence {
   description: string | null
   steps: SequenceStep[]
 }
+
+export interface GratitudeEntry {
+  id: string
+  entryDate: string // YYYY-MM-DD
+  items: string[]
+}
