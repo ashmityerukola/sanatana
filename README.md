@@ -36,15 +36,22 @@ day-one requirement.
 
 ## Data model
 
+Content tables — public, read-only from the client, RLS lets anyone select:
 - `quotes` — id, text, source, translation_notes
 - `quote_themes` — join table: quote_id + theme (yoga / meditation / gratitude / self-study / general)
-- `poses`, `sequences`, `meditations` — content tables (not yet built)
-- `gratitude_entries`, `journal_entries` — user-generated tables (not yet built)
+- `poses` — id, name (Sanskrit + English), instructions, benefits, cautions, image_url (nullable — no real pose images sourced yet)
+- `sequences` — id, name, description
+- `sequence_poses` — ordered join table: sequence_id + pose_id + position + hold_seconds
+- `meditations` — not yet built; deferred until there's real guided-session audio to seed
 
-Content tables (quotes, poses, sequences, meditations) are kept separate from
-user-generated tables (gratitude_entries, journal_entries) so that a future
-premium tier (e.g. gating extra guided meditations) can add access checks to
-content tables without touching the user-data tables at all.
+User-generated tables — every row belongs to exactly one user, RLS restricts each user to their own rows via `auth.uid() = user_id`:
+- `gratitude_entries` — one row per user per day (upserted), items text[]
+- `journal_entries` — append-only, multiple entries per day allowed, optional prompt + entry_text
+
+Auth is Supabase's built-in email/password (`auth.users`) — no custom `users`
+table. Content tables are kept separate from user-generated tables so that a
+future premium tier (e.g. gating extra guided meditations) can add access
+checks to content tables without touching the user-data tables at all.
 
 ## Running locally
 
@@ -56,9 +63,16 @@ npm run dev
 
 ### Setting up the database
 
-In the Supabase SQL editor, run `supabase/schema.sql` then `supabase/seed.sql`
-to create the `quotes` / `quote_themes` tables and load a starter set of
-tagged Gita and Yoga Sutra verses.
+In the Supabase SQL editor, run these files in order:
+
+1. `supabase/schema.sql` then `supabase/seed.sql` — quotes + quote_themes, with starter Gita/Yoga Sutra verses
+2. `supabase/poses_and_sequences.sql` then `supabase/poses_and_sequences_seed.sql` — poses + sequences
+3. `supabase/gratitude_entries.sql`
+4. `supabase/journal_entries.sql`
+
+Auth: in Authentication → Sign In / Providers → Email, "Confirm email" is
+turned off for now (dev convenience — signup logs you in immediately instead
+of requiring an email click). Turn it back on before this has real users.
 
 ## Screenshots
 
