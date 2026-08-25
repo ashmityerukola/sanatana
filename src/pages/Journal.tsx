@@ -1,4 +1,7 @@
 import { QuoteCard } from '../components/QuoteCard'
+import { RequireAuth } from '../components/RequireAuth'
+import { JournalComposer } from '../components/JournalComposer'
+import { JournalEntryList } from '../components/JournalEntryList'
 
 export function Journal() {
   return (
@@ -7,7 +10,14 @@ export function Journal() {
       <div className="mt-4">
         <QuoteCard theme="self-study" />
       </div>
-      <p className="mt-6 text-stone-500">Freeform reflection — coming next.</p>
+      <div className="mt-6">
+        <RequireAuth>
+          <div className="flex flex-col gap-6">
+            <JournalComposer />
+            <JournalEntryList />
+          </div>
+        </RequireAuth>
+      </div>
     </div>
   )
 }

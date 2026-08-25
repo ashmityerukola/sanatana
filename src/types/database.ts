@@ -37,3 +37,11 @@ export interface GratitudeEntry {
   entryDate: string // YYYY-MM-DD
   items: string[]
 }
+
+export interface JournalEntry {
+  id: string
+  entryDate: string // YYYY-MM-DD
+  prompt: string | null
+  text: string
+  createdAt: string
+}
