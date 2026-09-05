@@ -38,12 +38,13 @@ export function GratitudeLog() {
   }
 
   if (isLoading) {
-    return <div className="animate-pulse h-32 rounded-lg bg-stone-100" />
+    return <div className="h-32 animate-pulse rounded-xl bg-surface" />
   }
 
   return (
-    <div className="rounded-lg border border-stone-200 px-6 py-6">
-      <p className="font-medium text-stone-900">What are you grateful for today?</p>
+    <section className="rounded-xl border border-border bg-white px-6 py-7 sm:px-8">
+      <h2 className="font-serif text-xl text-ink">What are you grateful for today?</h2>
+      <p className="mt-1 text-sm text-muted">Keep it simple: one to three things is enough.</p>
       <div className="mt-4 flex flex-col gap-2">
         {items.map((item, index) => (
           <div key={index} className="flex gap-2">
@@ -52,13 +53,13 @@ export function GratitudeLog() {
               value={item}
               onChange={(e) => updateItem(index, e.target.value)}
               placeholder={`Gratitude ${index + 1}`}
-              className="flex-1 rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-stone-500"
+              className="flex-1 rounded-lg border border-border bg-cream px-3 py-2 text-ink outline-none transition-colors placeholder:text-muted focus:border-accent"
             />
             {items.length > 1 && (
               <button
                 onClick={() => removeItem(index)}
                 aria-label="Remove"
-                className="text-stone-400 hover:text-stone-700"
+                className="px-2 text-muted transition-colors hover:text-accent-hover"
               >
                 ×
               </button>
@@ -68,7 +69,7 @@ export function GratitudeLog() {
       </div>
 
       {items.length < MAX_ITEMS && (
-        <button onClick={addItem} className="mt-2 text-sm text-stone-500 hover:text-stone-800">
+        <button onClick={addItem} className="mt-3 w-fit text-sm text-accent transition-colors hover:text-accent-hover">
           + Add another
         </button>
       )}
@@ -77,12 +78,12 @@ export function GratitudeLog() {
         <button
           onClick={handleSave}
           disabled={isPending}
-          className="rounded-lg bg-stone-900 px-4 py-2 text-white disabled:opacity-40"
+          className="rounded-lg bg-accent px-4 py-2 text-white transition-colors hover:bg-accent-hover disabled:opacity-40"
         >
           {isPending ? 'Saving...' : 'Save'}
         </button>
-        {isSuccess && <span className="text-sm text-stone-500">Saved.</span>}
+        {isSuccess && <span className="text-sm text-muted">Saved.</span>}
       </div>
-    </div>
+    </section>
   )
 }

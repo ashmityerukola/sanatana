@@ -31,10 +31,11 @@ export function AuthForm() {
   }
 
   return (
-    <div className="mx-auto max-w-sm rounded-lg border border-stone-200 px-6 py-6">
-      <h2 className="text-lg font-medium text-stone-900">
+    <section className="mx-auto max-w-md rounded-xl border border-border bg-white px-6 py-7 sm:px-8">
+      <h2 className="font-serif text-xl text-ink">
         {mode === 'signIn' ? 'Sign in' : 'Create an account'}
       </h2>
+      <p className="mt-1 text-sm text-muted">Your reflections stay connected to your account.</p>
       <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-3">
         <input
           type="email"
@@ -42,7 +43,7 @@ export function AuthForm() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-stone-500"
+          className="rounded-lg border border-border bg-cream px-3 py-2 text-ink outline-none transition-colors placeholder:text-muted focus:border-accent"
         />
         <input
           type="password"
@@ -51,23 +52,23 @@ export function AuthForm() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-stone-500"
+          className="rounded-lg border border-border bg-cream px-3 py-2 text-ink outline-none transition-colors placeholder:text-muted focus:border-accent"
         />
         {error && <p className="text-sm text-red-600">{error}</p>}
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-lg bg-stone-900 px-4 py-2 text-white disabled:opacity-40"
+          className="rounded-lg bg-accent px-4 py-2 text-white transition-colors hover:bg-accent-hover disabled:opacity-40"
         >
           {mode === 'signIn' ? 'Sign in' : 'Sign up'}
         </button>
       </form>
       <button
         onClick={() => setMode(mode === 'signIn' ? 'signUp' : 'signIn')}
-        className="mt-3 text-sm text-stone-500 hover:text-stone-800"
+        className="mt-4 text-left text-sm text-muted transition-colors hover:text-ink"
       >
         {mode === 'signIn' ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
       </button>
-    </div>
+    </section>
   )
 }

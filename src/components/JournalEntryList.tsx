@@ -12,30 +12,30 @@ export function JournalEntryList() {
   const { data: entries, isLoading, error } = useJournalEntries()
   const { mutate: deleteEntry } = useDeleteJournalEntry()
 
-  if (isLoading) return <div className="animate-pulse h-24 rounded-lg bg-stone-100" />
+  if (isLoading) return <div className="h-24 animate-pulse rounded-xl bg-surface" />
   if (error) return <p className="text-red-600">Couldn't load entries: {(error as Error).message}</p>
   if (!entries || entries.length === 0) {
-    return <p className="text-stone-500">No entries yet — write your first reflection above.</p>
+    return <p className="text-sm text-muted">No entries yet — write your first reflection above.</p>
   }
 
   return (
     <div className="flex flex-col gap-4">
       {entries.map((entry) => (
-        <div key={entry.id} className="rounded-lg border border-stone-200 px-5 py-4">
+        <article key={entry.id} className="rounded-xl border border-border bg-white px-6 py-5">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm text-stone-400">{formatDate(entry.createdAt)}</p>
-              {entry.prompt && <p className="text-sm font-medium text-stone-600">{entry.prompt}</p>}
+              <p className="text-sm text-muted">{formatDate(entry.createdAt)}</p>
+              {entry.prompt && <p className="mt-1 text-sm font-medium text-ink">{entry.prompt}</p>}
             </div>
             <button
               onClick={() => deleteEntry(entry.id)}
-              className="text-sm text-stone-400 hover:text-red-600"
+              className="text-sm text-muted transition-colors hover:text-accent-hover"
             >
               Delete
             </button>
           </div>
-          <p className="mt-2 whitespace-pre-wrap text-stone-800">{entry.text}</p>
-        </div>
+          <p className="mt-4 whitespace-pre-wrap leading-7 text-ink">{entry.text}</p>
+        </article>
       ))}
     </div>
   )
