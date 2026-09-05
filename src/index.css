@@ -20,3 +20,20 @@ body {
   background-color: var(--color-cream);
   color: var(--color-ink);
 }
+
+/* Keyboard users need a visible location indicator. `focus-visible` avoids
+   showing this ring after ordinary mouse clicks, while keeping tab navigation
+   clear across every interactive element without repeating classes per file. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+::selection {
+  background-color: var(--color-accent-soft);
+  color: var(--color-ink);
+}
