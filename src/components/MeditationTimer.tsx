@@ -65,17 +65,17 @@ export function MeditationTimer() {
   }
 
   return (
-    <div className="rounded-lg border border-stone-200 px-6 py-8 text-center">
+    <section className="rounded-xl border border-border bg-white px-6 py-9 text-center">
       <div className="flex justify-center gap-2">
         {PRESETS_MIN.map((min) => (
           <button
             key={min}
             onClick={() => selectDuration(min)}
             disabled={isRunning}
-            className={`rounded-full border px-3 py-1 text-sm disabled:opacity-40 ${
+            className={`rounded-full border px-3 py-1 text-sm transition-colors disabled:opacity-40 ${
               durationMin === min && secondsLeft === min * 60
-                ? 'border-stone-900 bg-stone-900 text-white'
-                : 'border-stone-300 text-stone-600 hover:border-stone-500'
+                ? 'border-accent bg-accent text-white'
+                : 'border-border text-muted hover:border-accent hover:text-ink'
             }`}
           >
             {min} min
@@ -83,33 +83,33 @@ export function MeditationTimer() {
         ))}
       </div>
 
-      <p className="mt-6 text-6xl font-light tabular-nums text-stone-900">
+      <p className="mt-8 font-serif text-6xl tabular-nums text-ink sm:text-7xl">
         {formatTime(secondsLeft)}
       </p>
 
-      {isComplete && <p className="mt-2 text-stone-500">Session complete.</p>}
+      {isComplete && <p className="mt-3 text-sm text-muted">Session complete.</p>}
 
       <div className="mt-6 flex justify-center gap-3">
         {!isRunning ? (
           <button
             onClick={start}
             disabled={secondsLeft === 0}
-            className="rounded-lg bg-stone-900 px-5 py-2 text-white disabled:opacity-40"
+            className="rounded-lg bg-accent px-5 py-2 text-white transition-colors hover:bg-accent-hover disabled:opacity-40"
           >
             {secondsLeft === durationMin * 60 ? 'Start' : 'Resume'}
           </button>
         ) : (
-          <button onClick={pause} className="rounded-lg bg-stone-900 px-5 py-2 text-white">
+          <button onClick={pause} className="rounded-lg bg-accent px-5 py-2 text-white transition-colors hover:bg-accent-hover">
             Pause
           </button>
         )}
         <button
           onClick={reset}
-          className="rounded-lg border border-stone-300 px-5 py-2 text-stone-600 hover:border-stone-500"
+          className="rounded-lg border border-border px-5 py-2 text-muted transition-colors hover:border-accent hover:text-ink"
         >
           Reset
         </button>
       </div>
-    </div>
+    </section>
   )
 }
