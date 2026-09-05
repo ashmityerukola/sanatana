@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+/* A small, warm palette instead of Tailwind's default grays -- registered as
+   theme tokens (Tailwind v4's CSS-first config) so `bg-cream`, `text-ink`,
+   etc. are available as regular utility classes everywhere in the app. */
+@theme {
+  --color-cream: #fbf8f3;
+  --color-surface: #f4efe4;
+  --color-ink: #2b2420;
+  --color-muted: #8a7f72;
+  --color-border: #e7e0d2;
+  --color-accent: #b5602c;
+  --color-accent-hover: #9c4f22;
+  --color-accent-soft: #f4e6d6;
+
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+}

@@ -12,7 +12,7 @@ export function QuoteCard({ theme }: QuoteCardProps) {
   const { quote, isLoading, error } = useThemedQuote(theme)
 
   if (isLoading) {
-    return <div className="animate-pulse h-20 rounded-lg bg-stone-100" />
+    return <div className="h-20 animate-pulse rounded-xl bg-surface" />
   }
 
   if (error || !quote) {
@@ -22,9 +22,9 @@ export function QuoteCard({ theme }: QuoteCardProps) {
   }
 
   return (
-    <blockquote className="rounded-lg border border-stone-200 bg-stone-50 px-5 py-4">
-      <p className="text-stone-800 italic">"{quote.text}"</p>
-      <cite className="mt-2 block text-sm text-stone-500 not-italic">— {quote.source}</cite>
+    <blockquote className="rounded-xl border border-border border-l-4 border-l-accent bg-accent-soft px-6 py-5">
+      <p className="font-serif text-lg italic text-ink">"{quote.text}"</p>
+      <cite className="mt-2 block text-sm not-italic text-muted">— {quote.source}</cite>
     </blockquote>
   )
 }

@@ -31,9 +31,9 @@ export function Scripture() {
   }, [quotes, search, themeFilter])
 
   return (
-    <div className="mx-auto max-w-2xl px-6 py-8">
-      <h1 className="text-2xl font-medium text-stone-900">Scripture</h1>
-      <p className="mt-1 text-stone-500">
+    <div className="mx-auto max-w-3xl px-6 py-10">
+      <h1 className="font-serif text-2xl text-ink">Scripture</h1>
+      <p className="mt-1 text-muted">
         The library of verses every other page draws from, tagged by theme.
       </p>
 
@@ -42,7 +42,7 @@ export function Scripture() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search text or source..."
-        className="mt-6 w-full rounded-lg border border-stone-300 px-4 py-2 outline-none focus:border-stone-500"
+        className="mt-6 w-full rounded-lg border border-border bg-white px-4 py-2 text-ink outline-none focus:border-accent"
       />
 
       <div className="mt-3 flex flex-wrap gap-2">
@@ -50,10 +50,10 @@ export function Scripture() {
           <button
             key={theme}
             onClick={() => setThemeFilter(theme)}
-            className={`rounded-full border px-3 py-1 text-sm capitalize ${
+            className={`rounded-full border px-3 py-1 text-sm capitalize transition-colors ${
               themeFilter === theme
-                ? 'border-stone-900 bg-stone-900 text-white'
-                : 'border-stone-300 text-stone-600 hover:border-stone-500'
+                ? 'border-accent bg-accent text-white'
+                : 'border-border text-muted hover:border-accent hover:text-ink'
             }`}
           >
             {theme}
@@ -62,21 +62,21 @@ export function Scripture() {
       </div>
 
       <div className="mt-6 flex flex-col gap-4">
-        {isLoading && <p className="text-stone-500">Loading quotes...</p>}
+        {isLoading && <p className="text-muted">Loading quotes...</p>}
         {error && <p className="text-red-600">Couldn't load quotes: {(error as Error).message}</p>}
         {!isLoading && !error && filtered.length === 0 && (
-          <p className="text-stone-500">No quotes match.</p>
+          <p className="text-muted">No quotes match.</p>
         )}
         {filtered.map((quote) => (
-          <blockquote key={quote.id} className="rounded-lg border border-stone-200 px-5 py-4">
-            <p className="text-stone-800 italic">"{quote.text}"</p>
-            <div className="mt-2 flex items-center justify-between">
-              <cite className="text-sm text-stone-500 not-italic">— {quote.source}</cite>
+          <blockquote key={quote.id} className="rounded-xl border border-border bg-white px-6 py-5">
+            <p className="font-serif italic text-ink">"{quote.text}"</p>
+            <div className="mt-3 flex items-center justify-between">
+              <cite className="text-sm not-italic text-muted">— {quote.source}</cite>
               <div className="flex gap-1">
                 {quote.themes.map((theme) => (
                   <span
                     key={theme}
-                    className="rounded-full bg-stone-100 px-2 py-0.5 text-xs capitalize text-stone-600"
+                    className="rounded-full bg-accent-soft px-2 py-0.5 text-xs capitalize text-accent-hover"
                   >
                     {theme}
                   </span>
@@ -84,7 +84,7 @@ export function Scripture() {
               </div>
             </div>
             {quote.translationNotes && (
-              <p className="mt-2 text-sm text-stone-400">{quote.translationNotes}</p>
+              <p className="mt-2 text-sm text-muted">{quote.translationNotes}</p>
             )}
           </blockquote>
         ))}

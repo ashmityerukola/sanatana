@@ -11,9 +11,9 @@ const features = [
 
 export function Home() {
   return (
-    <div className="mx-auto max-w-2xl px-6 py-8">
-      <h1 className="text-2xl font-medium text-stone-900">Sanatana</h1>
-      <div className="mt-4">
+    <div className="mx-auto max-w-3xl px-6 py-10">
+      <p className="font-serif text-2xl text-ink">A quiet place to practice.</p>
+      <div className="mt-5">
         <QuoteCard theme="general" />
       </div>
       <div className="mt-8 flex flex-col gap-3">
@@ -21,10 +21,10 @@ export function Home() {
           <Link
             key={f.to}
             to={f.to}
-            className="rounded-lg border border-stone-200 px-5 py-4 hover:border-stone-400"
+            className="rounded-xl border border-border bg-white px-6 py-5 transition-colors hover:border-accent"
           >
-            <p className="font-medium text-stone-900">{f.label}</p>
-            <p className="text-sm text-stone-500">{f.description}</p>
+            <p className="font-serif text-lg text-ink">{f.label}</p>
+            <p className="text-sm text-muted">{f.description}</p>
           </Link>
         ))}
       </div>
