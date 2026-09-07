@@ -37,7 +37,14 @@ export function AuthForm() {
       </h2>
       <p className="mt-1 text-sm text-muted">Your reflections stay connected to your account.</p>
       <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-3">
+        {/* sr-only labels: visually hidden, but give screen readers a real
+            field name that (unlike a placeholder) doesn't vanish once the
+            user starts typing. */}
+        <label htmlFor="auth-email" className="sr-only">
+          Email
+        </label>
         <input
+          id="auth-email"
           type="email"
           required
           placeholder="Email"
@@ -45,7 +52,11 @@ export function AuthForm() {
           onChange={(e) => setEmail(e.target.value)}
           className="rounded-lg border border-border bg-cream px-3 py-2 text-ink outline-none transition-colors placeholder:text-muted focus:border-accent"
         />
+        <label htmlFor="auth-password" className="sr-only">
+          Password
+        </label>
         <input
+          id="auth-password"
           type="password"
           required
           minLength={6}

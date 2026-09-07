@@ -48,7 +48,11 @@ export function GratitudeLog() {
       <div className="mt-4 flex flex-col gap-2">
         {items.map((item, index) => (
           <div key={index} className="flex gap-2">
+            <label htmlFor={`gratitude-item-${index}`} className="sr-only">
+              Gratitude {index + 1}
+            </label>
             <input
+              id={`gratitude-item-${index}`}
               type="text"
               value={item}
               onChange={(e) => updateItem(index, e.target.value)}

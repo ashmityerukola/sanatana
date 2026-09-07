@@ -37,7 +37,11 @@ export function Scripture() {
         The library of verses every other page draws from, tagged by theme.
       </p>
 
+      <label htmlFor="scripture-search" className="sr-only">
+        Search quotes
+      </label>
       <input
+        id="scripture-search"
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}

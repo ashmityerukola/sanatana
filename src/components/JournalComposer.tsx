@@ -24,14 +24,22 @@ export function JournalComposer() {
     <section className="rounded-xl border border-border bg-white px-6 py-7 sm:px-8">
       <h2 className="font-serif text-xl text-ink">A moment for reflection</h2>
       <p className="mt-1 text-sm text-muted">Write without needing to make it perfect.</p>
+      <label htmlFor="journal-prompt" className="sr-only">
+        Prompt (optional)
+      </label>
       <input
+        id="journal-prompt"
         type="text"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
         placeholder="Prompt (optional)"
         className="mt-5 w-full rounded-lg border border-border bg-cream px-3 py-2 text-sm text-ink outline-none transition-colors placeholder:text-muted focus:border-accent"
       />
+      <label htmlFor="journal-text" className="sr-only">
+        Journal entry
+      </label>
       <textarea
+        id="journal-text"
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Write freely..."

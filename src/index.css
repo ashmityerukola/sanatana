@@ -7,7 +7,10 @@
   --color-cream: #fbf8f3;
   --color-surface: #f4efe4;
   --color-ink: #2b2420;
-  --color-muted: #8a7f72;
+  /* #8a7f72 measured 3.9:1 against white/cream -- fails WCAG AA's 4.5:1
+     minimum for normal text. This is darkened just enough to clear it
+     (5.3:1 on white, 5.0:1 on cream) while still reading as secondary text. */
+  --color-muted: #756a5c;
   --color-border: #e7e0d2;
   --color-accent: #b5602c;
   --color-accent-hover: #9c4f22;
